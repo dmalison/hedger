@@ -1,0 +1,262 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"firs",
+				"first_loan_total_days_to_payment"
+			],
+			[
+				"fir",
+				"first_loan_longest_payment_gap"
+			],
+			[
+				"secon",
+				"second_loan_paid_at_212_days"
+			],
+			[
+				"lo",
+				"loans_with_features"
+			],
+			[
+				"fi",
+				"first_loans"
+			],
+			[
+				"loan",
+				"loan_id"
+			],
+			[
+				"SE",
+				"second_loans"
+			],
+			[
+				"exp",
+				"experimentation"
+			],
+			[
+				"nu",
+				"numerator"
+			],
+			[
+				"exoe",
+				"experimentation"
+			],
+			[
+				"com",
+				"completed_trips_per_requesting_session"
+			],
+			[
+				"CA",
+				"CAST"
+			],
+			[
+				"metric",
+				"metric_type"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/dmalison/PythonProjects/marchmadness"
+	],
+	"file_history":
+	[
+		"/Users/dmalison/Uber/mxpkg/Makefile",
+		"/Users/dmalison/Uber/mxpkg/abpkg-project/README.md",
+		"/Users/dmalison/Uber/mxpkg/abpkg-project/Makefile",
+		"/Users/dmalison/PycharmProjects/investments_project/Makefile",
+		"/Users/dmalison/PycharmProjects/investments_project/requirements.txt",
+		"/Users/dmalison/PycharmProjects/investments_project/pyproject.toml",
+		"/Users/dmalison/PycharmProjects/investments_project/src/investments/cpi_downloader.py",
+		"/Users/dmalison/PycharmProjects/investments_project/src/investments/chained_cpi.py",
+		"/Users/dmalison/MySQLProjects/payjoy/takehome_script.sql",
+		"/Users/dmalison/MySQLProjects/payjoy/payjoy_ds_takehome_202010.sql",
+		"/Users/dmalison/Uber/mxpkg/abpkg-project/test_load_data.py",
+		"/Users/dmalison/Uber/mxpkg/abpkg-project/create_configuration.yab",
+		"/Users/dmalison/Desktop/executed",
+		"/Users/dmalison/Desktop/submitted",
+		"/Users/dmalison/Desktop/get_configuration.yab",
+		"/Users/dmalison/Desktop/update_configuration.yab",
+		"/Users/dmalison/Desktop/create_configuration.yab",
+		"/Users/dmalison/Uber/umetric@metric-definition/mx_ingestion.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/rider_sessions.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/demand_jobs.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/composite.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/untitled.txt",
+		"/Users/dmalison/Uber/umetric@metric-definition/refactor.py",
+		"/Users/dmalison/Uber/umetric@metric-definition/demand_jobs_completed.yaml",
+		"/Users/dmalison/Desktop/error.json",
+		"/Users/dmalison/Desktop/metadata.json",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/parameter-serving/METADATA",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/experiment-configuration/METADATA",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/experiment-analysis/METADATA",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/rider-product-core/METADATA",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/config/METADATA",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/experiment-configuration/experiment-configuration-staging.yaml",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/experiment-analysis/experiment-analysis-staging",
+		"/Users/dmalison/Uber/cerberus-http-services/grpc-services/experiment-analysis/---",
+		"/Users/dmalison/Uber/cerberus-http-services/http-services/mentana.yaml",
+		"/Users/dmalison/Uber/fievel/marketplace/marketplace-intelligence/lovelace/sql_processor/src/test/resources/metric_defs/demand_jobs.yaml",
+		"/Users/dmalison/Desktop/cohort_queryrunner_result_metadata.json",
+		"/Users/dmalison/Uber/fievel/marketplace/marketplace-intelligence/lovelace/sql_processor/src/test/resources/metric_defs/mx_ingestion.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/fact_trip.yaml",
+		"/Users/dmalison/Uber/umetric@metric-definition/demand_jobs_assigned.yaml",
+		"/Users/dmalison/Downloads/Logless Cohort Demo Script.py",
+		"/Users/dmalison/Desktop/data.csv"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "marchmadness.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 235.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

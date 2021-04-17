@@ -9,3 +9,8 @@ venv:
 .PHONY: clean
 clean:
 	rm -rf ${VENV}
+
+
+.PHONY: lint
+lint:
+	flake8 marchmadness
