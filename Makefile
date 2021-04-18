@@ -1,5 +1,7 @@
 PYTHON := python3
 VENV := .venv
+SRC := marchmadness/
+TESTS := tests/
 
 
 .PHONY: venv
@@ -11,10 +13,6 @@ venv:
 clean:
 	rm -rf ${VENV}
 	find . -type f -name '*.pyc'
-
-
-SRC := marchmadness/
-TESTS := tests/
 
 .PHONY: lint
 lint:
