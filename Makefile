@@ -10,6 +10,7 @@ venv:
 .PHONY: clean
 clean:
 	rm -rf ${VENV}
+	find . -type f -name '*.pyc'
 
 
 SRC := marchmadness/
