@@ -1,6 +1,7 @@
 PYTHON := python3
 VENV := .venv
 
+
 .PHONY: venv
 venv: 
 	${PYTHON} -m venv ${VENV}
@@ -11,6 +12,18 @@ clean:
 	rm -rf ${VENV}
 
 
+SRC := marchmadness/
+TESTS := tests/
+
 .PHONY: lint
 lint:
-	flake8 marchmadness
+	${PYTHON} -m flake8 ${SRC} ${TESTS}
+
+.PHONY: test
+test:
+	${PYTHON} -m pytest ${TESTS}
+
+.PHONY: coverage
+coverage:
+	coverage run --source=${SRC} -m pytest ${TESTS}
+	coverage report -m

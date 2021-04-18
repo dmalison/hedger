@@ -1,6 +1,5 @@
 from Typing import List
 
-from round import Round
 from team import Team
 
 
