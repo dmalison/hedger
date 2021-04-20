@@ -9,5 +9,5 @@ class EntryTest(unittest.TestCase):
         self.assertEqual(repr(my_team), "Entry('my_team')")
 
     def test_entry_repr_with_no_name(self):
-        my_team = entry.EmptyEntry()
-        self.assertEqual(repr(my_team), "EmptyEntry()")
+        empty_team = entry.EmptyEntry()
+        self.assertEqual(repr(empty_team), "EmptyEntry()")

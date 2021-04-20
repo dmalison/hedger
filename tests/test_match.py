@@ -58,20 +58,20 @@ class MatchTest(unittest.TestCase):
         semifinal_west.set_top(tigers).set_bottom(crimson_tide)
         final.set_top(semifinal_east).set_bottom(semifinal_west)
 
-        top = (
+        top_str = (
             "Match('Semifinal (East)')"
             ".set_top(Entry('Bulldogs'))"
             ".set_bottom(Entry('Gators'))"
         )
-        bottom = (
+        bottom_str = (
             "Match('Semifinal (West)')"
             ".set_top(Entry('Tigers'))"
             ".set_bottom(Entry('Crimson Tide'))"
         )
 
-        self.assertEqual(repr(final.top), top)
-        self.assertEqual(repr(final.bottom), bottom)
+        self.assertEqual(repr(final.top), top_str)
+        self.assertEqual(repr(final.bottom), bottom_str)
 
         expected_fmt = "Match('Final').set_top({top}).set_bottom({bottom})"
-        expected = expected_fmt.format(top=top, bottom=bottom)
+        expected = expected_fmt.format(top=top_str, bottom=bottom_str)
         self.assertEqual(repr(final), expected)

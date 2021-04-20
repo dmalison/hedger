@@ -1,7 +1,6 @@
 import unittest
 
 import marchmadness.entry as entry
-import marchmadness.match as match
 import marchmadness.tournament as tournament
 
 
@@ -12,6 +11,11 @@ class TournamentTest(unittest.TestCase):
         entries = [gryffindor, slytherin]
         quidditch_cup = tournament.Tournament(entries)
 
-        actual = [repr(match) for match in quidditch_cup.matches]
-        expected = ["Match('final').set_top(Entry('gryffindor')).set_bottom(Entry('slytherin'))"]
+        actual = [repr(m) for m in quidditch_cup.matches]
+        final_str = (
+            "Match('final')"
+            ".set_top(Entry('Gryffindor'))"
+            ".set_bottom(Entry('Slytherin'))"
+        )
+        expected = [final_str]
         self.assertEqual(actual, expected)
