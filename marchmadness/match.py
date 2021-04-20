@@ -1,12 +1,34 @@
 class Match:
-    def __init__(self, top, bottom, winner):
+    def __init__(self, name):
+        self._name = name
+
+        self._top = None
+        self._bottom = None
+        self._winner = None
+
+    @property
+    def top(self):
+        return self._top
+
+    def set_top(self, top):
         self._top = top
+        return self
+
+    @property
+    def bottom(self):
+        return self._bottom
+
+    def set_bottom(self, bottom):
         self._bottom = bottom
-        self._winner = winner
+        return self
 
     def __repr__(self):
-        return 'Match({top}, {bottom}, {winner})'.format(
-            top=repr(self._top), 
-            bottom=repr(self._bottom),
-            winner=repr(self._winner)
-        )
+        repr_str = "Match('{name}')".format(name=self._name)
+
+        if self._top is not None:
+            repr_str += ".set_top({top})".format(top=self._top)
+
+        if self._bottom is not None:
+            repr_str += ".set_bottom({bottom})".format(bottom=self._bottom)
+
+        return repr_str

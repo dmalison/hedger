@@ -6,11 +6,7 @@ from team import Team
 class Tournament:
     def __init__(self, teams: List[Team]):
         self._teams = teams
-        self._rounds = self._make_rounds()
+        self._matches = self._make_matches()
 
-    def _make_rounds(self):
-        self._make_first_round()
-        print('making rounds')
-
-    def _make_first_round(self):
-        Round()
+    def _make_matches(self):
+        print('making matches')
