@@ -24,7 +24,7 @@ class Tournament:
                 round_,
                 last_round_matches
             )
-            
+
             self._matches.extend(next_round_matches)
             round_ += 1
             last_round_matches = next_round_matches
