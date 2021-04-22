@@ -5,73 +5,73 @@ import marchmadness.match as match
 
 
 class MatchTest(unittest.TestCase):
-    def test_match_repr_with_only_name(self):
-        final = match.Match('Final')
-        self.assertEqual(repr(final), "Match('Final')")
+    def test_match_repr_with_only_round_and_index(self):
+        final = match.Match(round_=0, index=0)
+        self.assertEqual(repr(final), "Match(round_=0, index=0)")
 
     def test_match_repr_with_top_entry(self):
-        final = match.Match('Final')
         bulldogs = entry.Entry('Bulldogs')
-        final.set_top(bulldogs)
+        final = match.Match(round_=0, index=0, top=bulldogs)
 
-        self.assertEqual(repr(final.top), "Entry('Bulldogs')")
-        expected = "Match('Final').set_top(Entry('Bulldogs'))"
+        expected = "Match(round_=0, index=0, top=Entry('Bulldogs'))"
         self.assertEqual(repr(final), expected)
 
     def test_match_repr_with_bottom_entry(self):
-        final = match.Match('Final')
         tigers = entry.Entry('Tigers')
-        final.set_bottom(tigers)
+        final = match.Match(round_=0, index=0, bottom=tigers)
 
-        self.assertEqual(repr(final.bottom), "Entry('Tigers')")
-        expected = "Match('Final').set_bottom(Entry('Tigers'))"
+        expected = "Match(round_=0, index=0, bottom=Entry('Tigers'))"
         self.assertEqual(repr(final), expected)
 
-    def test_match_repr_with_both_top_and_bottom_entries(self):
-        final = match.Match('Final')
+    def test_match_repr_with_top_and_bottom_entries(self):
         bulldogs = entry.Entry('Bulldogs')
         tigers = entry.Entry('Tigers')
-        final.set_top(bulldogs).set_bottom(tigers)
+        final = match.Match(round_=0, index=0, top=bulldogs, bottom=tigers)
 
-        self.assertEqual(repr(final.top), "Entry('Bulldogs')")
-        self.assertEqual(repr(final.bottom), "Entry('Tigers')")
-
-        expected = (
-            "Match('Final')"
-            ".set_top(Entry('Bulldogs'))"
-            ".set_bottom(Entry('Tigers'))"
-        )
+        top_str = "Entry('Bulldogs')"
+        bottom_str = "Entry('Tigers')"
+        expected_fmt = "Match(round_=0, index=0, top={top}, bottom={bottom})"
+        expected = expected_fmt.format(top=top_str, bottom=bottom_str)
 
         self.assertEqual(repr(final), expected)
 
     def test_match_repr_with_semifinals(self):
-        final = match.Match('Final')
-        semifinal_east = match.Match('Semifinal (East)')
-        semifinal_west = match.Match('Semifinal (West)')
-
         bulldogs = entry.Entry('Bulldogs')
         gators = entry.Entry('Gators')
+        semifinal_east = match.Match(
+            round_=0,
+            index=0,
+            top=bulldogs,
+            bottom=gators
+        )
+
         tigers = entry.Entry('Tigers')
         crimson_tide = entry.Entry('Crimson Tide')
+        semifinal_west = match.Match(
+            round_=0,
+            index=1,
+            top=tigers,
+            bottom=crimson_tide
+        )
 
-        semifinal_east.set_top(bulldogs).set_bottom(gators)
-        semifinal_west.set_top(tigers).set_bottom(crimson_tide)
-        final.set_top(semifinal_east).set_bottom(semifinal_west)
+        final = match.Match(
+            round_=1,
+            index=0,
+            top=semifinal_east,
+            bottom=semifinal_west
+        )
 
         top_str = (
-            "Match('Semifinal (East)')"
-            ".set_top(Entry('Bulldogs'))"
-            ".set_bottom(Entry('Gators'))"
+            "Match(round_=0, index=0, "
+            "top=Entry('Bulldogs'), "
+            "bottom=Entry('Gators'))"
         )
         bottom_str = (
-            "Match('Semifinal (West)')"
-            ".set_top(Entry('Tigers'))"
-            ".set_bottom(Entry('Crimson Tide'))"
+            "Match(round_=0, index=1, "
+            "top=Entry('Tigers'), "
+            "bottom=Entry('Crimson Tide'))"
         )
 
-        self.assertEqual(repr(final.top), top_str)
-        self.assertEqual(repr(final.bottom), bottom_str)
-
-        expected_fmt = "Match('Final').set_top({top}).set_bottom({bottom})"
+        expected_fmt = "Match(round_=1, index=0, top={top}, bottom={bottom})"
         expected = expected_fmt.format(top=top_str, bottom=bottom_str)
         self.assertEqual(repr(final), expected)

@@ -1,34 +1,20 @@
 class Match:
-    def __init__(self, name):
-        self._name = name
-
-        self._top = None
-        self._bottom = None
-        self._winner = None
-
-    @property
-    def top(self):
-        return self._top
-
-    def set_top(self, top):
+    def __init__(self, *, round_, index, top=None, bottom=None):
+        self._round = round_
+        self._index = index
         self._top = top
-        return self
-
-    @property
-    def bottom(self):
-        return self._bottom
-
-    def set_bottom(self, bottom):
         self._bottom = bottom
-        return self
 
     def __repr__(self):
-        repr_str = "Match('{name}')".format(name=self._name)
+        repr_fmt = "Match(round_={round_}, index={index}"
+        repr_str = repr_fmt.format(round_=self._round, index=self._index)
 
         if self._top is not None:
-            repr_str += ".set_top({top})".format(top=self._top)
+            repr_str += ", top={top}".format(top=self._top)
 
         if self._bottom is not None:
-            repr_str += ".set_bottom({bottom})".format(bottom=self._bottom)
+            repr_str += ", bottom={bottom}".format(bottom=self._bottom)
+
+        repr_str += ")"
 
         return repr_str

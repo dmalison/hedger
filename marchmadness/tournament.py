@@ -11,16 +11,39 @@ class Tournament:
     @property
     def matches(self):
         if self._matches is None:
-            self._make_matches()
+            self._make_all_matches()
         return self._matches
 
-    def _make_matches(self):
+    def _make_all_matches(self):
         self._matches = list()
+
+        round_ = 0
+        last_round_matches = self._entries
+        while len(last_round_matches) > 1:
+            next_round_matches = self._make_next_round_matches(
+                round_,
+                last_round_matches
+            )
+            
+            self._matches.extend(next_round_matches)
+            round_ += 1
+            last_round_matches = next_round_matches
+
+    def _make_next_round_matches(self, round_, last_round_matches):
+        index = 0
+        next_round_matches = list()
         for top, bottom in utils.grouper(
-            self._entries,
+            last_round_matches,
             n=2,
             fillvalue=entry.EmptyEntry()
         ):
-            new_match = match.Match('final')
-            new_match.set_top(top).set_bottom(bottom)
-            self._matches.append(new_match)
+            new_match = match.Match(
+                round_=round_,
+                index=index,
+                top=top,
+                bottom=bottom
+            )
+            next_round_matches.append(new_match)
+            index += 1
+
+        return next_round_matches
