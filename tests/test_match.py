@@ -1,6 +1,7 @@
 import unittest
 
 import marchmadness
+from marchmadness.result import Result
 
 
 class MatchTest(unittest.TestCase):
@@ -16,6 +17,24 @@ class MatchTest(unittest.TestCase):
 
         expected = \
             "Match(round_=0, index=0, top=Entry('A'), bottom=Entry('B'))"
+
+        self.assertEqual(repr(match), expected)
+
+    def test_match_repr_with_result(self):
+        team_a = marchmadness.Entry('A')
+        team_b = marchmadness.Entry('B')
+        match = marchmadness.Match(
+            round_=0,
+            index=0,
+            top=team_a,
+            bottom=team_b
+        )
+        match.set_result(Result.TOP_WINS)
+
+        expected = (
+            "Match(round_=0, index=0, top=Entry('A'), bottom=Entry('B'))"
+            ".set_result(Result.TOP_WINS)"
+        )
 
         self.assertEqual(repr(match), expected)
 
@@ -122,6 +141,25 @@ class MatchTest(unittest.TestCase):
         )
         self.assertNotEqual(match, not_a_duplicate_match)
 
+    def test_matches_with_different_results_are_not_equal(self):
+        team_a = marchmadness.Entry('A')
+        team_b = marchmadness.Entry('B')
+        match = marchmadness.Match(
+            round_=0,
+            index=0,
+            top=team_a,
+            bottom=team_b
+        )
+        match.set_result(Result.TOP_WINS)
+        match_with_different_result = marchmadness.Match(
+            round_=0,
+            index=0,
+            top=team_a,
+            bottom=team_b
+        )
+        match_with_different_result.set_result(Result.BOTTOM_WINS)
+        self.assertNotEqual(match, match_with_different_result)
+
     def test_matches_and_entries_are_not_equal(self):
         empty_entry = marchmadness.EmptyEntry()
         empty_match = marchmadness.Match(
@@ -132,3 +170,16 @@ class MatchTest(unittest.TestCase):
         )
         self.assertNotEqual(empty_entry, empty_match)
         self.assertNotEqual(empty_match, empty_entry)
+
+    def test_bad_result_returns_none_as_winner(self):
+        team_a = marchmadness.Entry('A')
+        team_b = marchmadness.Entry('B')
+        match = marchmadness.Match(
+            round_=0,
+            index=0,
+            top=team_a,
+            bottom=team_b
+        )
+        match.set_result("not a result")
+
+        self.assertIsNone(match.winner)

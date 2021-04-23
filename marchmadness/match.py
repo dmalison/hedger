@@ -53,4 +53,4 @@ class Match:
         elif self._result == Result.BOTTOM_WINS:
             return self._bottom._get_winner()
         else:
-            raise ValueError('')
+            return
