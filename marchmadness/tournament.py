@@ -1,5 +1,4 @@
-import marchmadness.entry as entry
-import marchmadness.match as match
+import marchmadness
 import marchmadness.utils as utils
 
 
@@ -35,9 +34,9 @@ class Tournament:
         for top, bottom in utils.grouper(
             last_round_matches,
             n=2,
-            fillvalue=entry.EmptyEntry()
+            fillvalue=marchmadness.EmptyEntry()
         ):
-            new_match = match.Match(
+            new_match = marchmadness.Match(
                 round_=round_,
                 index=index,
                 top=top,
