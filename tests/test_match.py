@@ -20,7 +20,7 @@ class MatchTest(unittest.TestCase):
 
         self.assertEqual(repr(match), expected)
 
-    def test_match_repr_with_result(self):
+    def test_match_repr_with_set_result(self):
         team_a = marchmadness.Entry('A')
         team_b = marchmadness.Entry('B')
         match = marchmadness.Match(

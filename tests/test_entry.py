@@ -8,7 +8,7 @@ class EntryTest(unittest.TestCase):
         my_team = marchmadness.Entry('my_team')
         self.assertEqual(repr(my_team), "Entry('my_team')")
 
-    def test_entry_repr_with_no_name(self):
+    def test_empty_entry_repr(self):
         empty_team = marchmadness.EmptyEntry()
         self.assertEqual(repr(empty_team), "EmptyEntry()")
 

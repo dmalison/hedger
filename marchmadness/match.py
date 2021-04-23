@@ -11,6 +11,22 @@ class Match:
 
         self._result = None
 
+    def set_result(self, result):
+        self._result = result
+        return self
+
+    @property
+    def winner(self):
+        return self._get_winner()
+
+    def _get_winner(self):
+        if self._result == Result.TOP_WINS:
+            return self._top._get_winner()
+        elif self._result == Result.BOTTOM_WINS:
+            return self._bottom._get_winner()
+        else:
+            return
+
     def __repr__(self):
         _repr_fmt = \
             "Match(round_={round_}, index={index}, top={top}, bottom={bottom})"
@@ -38,19 +54,3 @@ class Match:
             return is_same
         else:
             return False
-
-    def set_result(self, result):
-        self._result = result
-        return self
-
-    @property
-    def winner(self):
-        return self._get_winner()
-
-    def _get_winner(self):
-        if self._result == Result.TOP_WINS:
-            return self._top._get_winner()
-        elif self._result == Result.BOTTOM_WINS:
-            return self._bottom._get_winner()
-        else:
-            return

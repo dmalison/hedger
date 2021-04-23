@@ -2,6 +2,9 @@ class Entry:
     def __init__(self, name):
         self._name = name
 
+    def _get_winner(self):
+        return self
+
     def __repr__(self):
         _name_str = "'{name}'".format(name=self._name)
         return "Entry({name_str})".format(name_str=_name_str)
@@ -11,9 +14,6 @@ class Entry:
             return self._name == other._name
         else:
             return False
-
-    def _get_winner(self):
-        return self
 
 
 class EmptyEntry(Entry):
