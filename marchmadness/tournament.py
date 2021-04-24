@@ -1,34 +1,31 @@
 import marchmadness
-import marchmadness.utils as utils
+from marchmadness import utils
 
 
 class Tournament:
     def __init__(self, entries):
         self._entries = entries
-        self._matches = None
 
-    @property
-    def matches(self):
-        if self._matches is None:
-            self._make_all_matches()
-        return self._matches
-
-    def _make_all_matches(self):
-        self._matches = list()
+    def make_bracket(self, results):
+        matches = list()
+        result_iter = iter(results)
 
         round_ = 0
         last_round_matches = self._entries
         while len(last_round_matches) > 1:
-            next_round_matches = self._make_next_round_matches(
+            round_matches = self._make_round_matches(
                 round_,
-                last_round_matches
+                last_round_matches,
+                result_iter
             )
 
-            self._matches.extend(next_round_matches)
+            matches.extend(round_matches)
             round_ += 1
-            last_round_matches = next_round_matches
+            last_round_matches = round_matches
 
-    def _make_next_round_matches(self, round_, last_round_matches):
+        return marchmadness.Bracket(matches)
+
+    def _make_round_matches(self, round_, last_round_matches, result_iter):
         index = 0
         next_round_matches = list()
         for top, bottom in utils.grouper(
@@ -40,7 +37,8 @@ class Tournament:
                 round_=round_,
                 index=index,
                 top=top,
-                bottom=bottom
+                bottom=bottom,
+                result=next(result_iter)
             )
             next_round_matches.append(new_match)
             index += 1

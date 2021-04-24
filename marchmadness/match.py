@@ -3,21 +3,20 @@ from marchmadness.result import Result
 
 class Match:
 
-    def __init__(self, *, round_, index, top, bottom):
+    def __init__(self, *, round_, index, top, bottom, result):
         self._round = round_
         self._index = index
         self._top = top
         self._bottom = bottom
-
-        self._result = None
-
-    def set_result(self, result):
         self._result = result
-        return self
+
+        self._winner = None
 
     @property
     def winner(self):
-        return self._get_winner()
+        if self._winner is None:
+            self._winner = self._get_winner()
+        return self._winner
 
     def _get_winner(self):
         if self._result == Result.TOP_WINS:
@@ -28,18 +27,18 @@ class Match:
             return
 
     def __repr__(self):
-        _repr_fmt = \
-            "Match(round_={round_}, index={index}, top={top}, bottom={bottom})"
+        repr_fmt = (
+            "Match(round_={round_}, index={index}, top={top}, "
+            "bottom={bottom}, result={result})"
+        )
 
-        repr_str = _repr_fmt.format(
+        repr_str = repr_fmt.format(
             round_=self._round,
             index=self._index,
             top=self._top,
-            bottom=self._bottom
+            bottom=self._bottom,
+            result=self._result
         )
-
-        if self._result is not None:
-            repr_str += '.set_result({result})'.format(result=self._result)
 
         return repr_str
 

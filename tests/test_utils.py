@@ -1,6 +1,6 @@
 import unittest
 
-import marchmadness.utils as utils
+from marchmadness import utils
 
 
 class UtilsTest(unittest.TestCase):
