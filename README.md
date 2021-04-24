@@ -1,7 +1,7 @@
-# marchmadness
+# hedger
 
 ```
-git clone https://github.com/dmalison/marchmadness.git
+git clone https://github.com/dmalison/hedger.git
 
 make venv
 source .venv/bin/activate

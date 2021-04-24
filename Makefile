@@ -1,6 +1,6 @@
 PYTHON := python3
 VENV := .venv
-SRC := marchmadness/
+SRC := hedger/
 TESTS := tests/
 
 

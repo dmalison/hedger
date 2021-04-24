@@ -1,18 +1,18 @@
 import unittest
 
-import marchmadness
-from marchmadness.result import Result
+import hedger
+from hedger.result import Result
 
 
 class TournamentTest(unittest.TestCase):
     def test_make_bracket_with_two_teams(self):
-        gryffindor = marchmadness.Entry('Gryffindor')
-        slytherin = marchmadness.Entry('Slytherin')
+        gryffindor = hedger.Entry('Gryffindor')
+        slytherin = hedger.Entry('Slytherin')
         entries = [gryffindor, slytherin]
-        quidditch_cup = marchmadness.Tournament(entries)
+        quidditch_cup = hedger.Tournament(entries)
         bracket = quidditch_cup.make_bracket([Result.TOP_WINS])
 
-        final = marchmadness.Match(
+        final = hedger.Match(
             round_=0,
             index=0,
             top=gryffindor,
@@ -23,31 +23,31 @@ class TournamentTest(unittest.TestCase):
         self.assertEqual(bracket.matches, expected)
 
     def test_make_all_matches_with_four_teams(self):
-        gryffindor = marchmadness.Entry('Gryffindor')
-        ravenclaw = marchmadness.Entry('Ravenclaw')
-        hufflepuff = marchmadness.Entry('Hufflepuff')
-        slytherin = marchmadness.Entry('Slytherin')
+        gryffindor = hedger.Entry('Gryffindor')
+        ravenclaw = hedger.Entry('Ravenclaw')
+        hufflepuff = hedger.Entry('Hufflepuff')
+        slytherin = hedger.Entry('Slytherin')
         entries = [gryffindor, ravenclaw, hufflepuff, slytherin]
-        quidditch_cup = marchmadness.Tournament(entries)
+        quidditch_cup = hedger.Tournament(entries)
         bracket = quidditch_cup.make_bracket(
             [Result.TOP_WINS, Result.BOTTOM_WINS, Result.TOP_WINS]
         )
 
-        semifinal_0 = marchmadness.Match(
+        semifinal_0 = hedger.Match(
             round_=0,
             index=0,
             top=gryffindor,
             bottom=ravenclaw,
             result=Result.TOP_WINS
         )
-        semifinal_1 = marchmadness.Match(
+        semifinal_1 = hedger.Match(
             round_=0,
             index=1,
             top=hufflepuff,
             bottom=slytherin,
             result=Result.BOTTOM_WINS
         )
-        final = marchmadness.Match(
+        final = hedger.Match(
             round_=1,
             index=0,
             top=semifinal_0,

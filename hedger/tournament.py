@@ -1,5 +1,5 @@
-import marchmadness
-from marchmadness import utils
+import hedger
+from hedger import utils
 
 
 class Tournament:
@@ -23,7 +23,7 @@ class Tournament:
             round_ += 1
             last_round_matches = this_round_matches
 
-        return marchmadness.Bracket(matches)
+        return hedger.Bracket(matches)
 
     def _make_this_round_matches(
         self,
@@ -35,9 +35,9 @@ class Tournament:
         next_round_matches = list()
         for top, bottom in utils.pairwise_grouper(
             last_round_matches,
-            fillvalue=marchmadness.EmptyEntry()
+            fillvalue=hedger.EmptyEntry()
         ):
-            new_match = marchmadness.Match(
+            new_match = hedger.Match(
                 round_=round_,
                 index=index,
                 top=top,

@@ -1,6 +1,6 @@
 import unittest
 
-from marchmadness import utils
+from hedger import utils
 
 
 class UtilsTest(unittest.TestCase):

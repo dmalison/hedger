@@ -1,4 +1,4 @@
-from marchmadness.bracket import Bracket
-from marchmadness.entry import Entry, EmptyEntry
-from marchmadness.match import Match
-from marchmadness.tournament import Tournament
+from hedger.bracket import Bracket
+from hedger.entry import Entry, EmptyEntry
+from hedger.match import Match
+from hedger.tournament import Tournament
