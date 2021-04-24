@@ -1,0 +1,5 @@
+- Make Scorer
+- Make generate_all_brackets()
+- Add team power / probabilities
+- Rename library to hedger
+- Add CLI

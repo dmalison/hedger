@@ -1,4 +1,4 @@
-from marchmadness.result import Result
+from hedger.result import Result
 
 
 class Match:
