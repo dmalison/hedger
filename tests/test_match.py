@@ -99,7 +99,7 @@ class MatchTest(unittest.TestCase):
             bottom=entry_b,
             result=Result.TOP_WINS
         )
-        match_with_top_and_bottom_switched= hedger.Match(
+        match_with_top_and_bottom_switched = hedger.Match(
             round_=0,
             index=0,
             top=entry_b,
