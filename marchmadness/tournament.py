@@ -13,24 +13,28 @@ class Tournament:
         round_ = 0
         last_round_matches = self._entries
         while len(last_round_matches) > 1:
-            round_matches = self._make_round_matches(
+            this_round_matches = self._make_this_round_matches(
                 round_,
                 last_round_matches,
                 result_iter
             )
 
-            matches.extend(round_matches)
+            matches.extend(this_round_matches)
             round_ += 1
-            last_round_matches = round_matches
+            last_round_matches = this_round_matches
 
         return marchmadness.Bracket(matches)
 
-    def _make_round_matches(self, round_, last_round_matches, result_iter):
+    def _make_this_round_matches(
+        self,
+        round_,
+        last_round_matches,
+        result_iter
+    ):
         index = 0
         next_round_matches = list()
-        for top, bottom in utils.grouper(
+        for top, bottom in utils.pairwise_grouper(
             last_round_matches,
-            n=2,
             fillvalue=marchmadness.EmptyEntry()
         ):
             new_match = marchmadness.Match(

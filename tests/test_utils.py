@@ -4,8 +4,8 @@ from marchmadness import utils
 
 
 class UtilsTest(unittest.TestCase):
-    def test_grouper_on_collection_of_letters(self):
-        actual = list(utils.grouper('ABCDEFG', 3, 'x'))
-        expected = [('A', 'B', 'C'), ('D', 'E', 'F'), ('G', 'x', 'x')]
+    def test_pairwise_grouper_on_a_string(self):
+        actual = list(utils.pairwise_grouper('ABCDEFG', 'x'))
+        expected = [('A', 'B'), ('C', 'D'), ('E', 'F'), ('G', 'x')]
 
         self.assertListEqual(actual, expected)

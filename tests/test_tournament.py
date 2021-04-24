@@ -8,7 +8,6 @@ class TournamentTest(unittest.TestCase):
     def test_make_bracket_with_two_teams(self):
         gryffindor = marchmadness.Entry('Gryffindor')
         slytherin = marchmadness.Entry('Slytherin')
-
         entries = [gryffindor, slytherin]
         quidditch_cup = marchmadness.Tournament(entries)
         bracket = quidditch_cup.make_bracket([Result.TOP_WINS])
@@ -28,7 +27,6 @@ class TournamentTest(unittest.TestCase):
         ravenclaw = marchmadness.Entry('Ravenclaw')
         hufflepuff = marchmadness.Entry('Hufflepuff')
         slytherin = marchmadness.Entry('Slytherin')
-
         entries = [gryffindor, ravenclaw, hufflepuff, slytherin]
         quidditch_cup = marchmadness.Tournament(entries)
         bracket = quidditch_cup.make_bracket(

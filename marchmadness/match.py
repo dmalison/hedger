@@ -20,9 +20,11 @@ class Match:
 
     def _get_winner(self):
         if self._result == Result.TOP_WINS:
-            return self._top._get_winner()
+            top_is_match_inst = isinstance(self._top, Match)
+            return self._top.winner if top_is_match_inst else self._top
         elif self._result == Result.BOTTOM_WINS:
-            return self._bottom._get_winner()
+            bot_is_match_inst = isinstance(self._top, Match)
+            return self._bottom.winner if bot_is_match_inst else self._bottom
         else:
             return
 
