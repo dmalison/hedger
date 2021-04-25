@@ -12,6 +12,9 @@ class Entry:
         else:
             return False
 
+    def get_winner(self):
+        return self
+
 
 class EmptyEntry(Entry):
     def __init__(self):

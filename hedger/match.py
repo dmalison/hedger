@@ -10,21 +10,15 @@ class Match:
         self._bottom = bottom
         self._result = result
 
-        self._winner = None
-
     @property
-    def winner(self):
-        if self._winner is None:
-            self._winner = self._get_winner()
-        return self._winner
+    def round(self):
+        return self._round
 
-    def _get_winner(self):
+    def get_winner(self):
         if self._result == Result.TOP_WINS:
-            top_is_match_inst = isinstance(self._top, Match)
-            return self._top.winner if top_is_match_inst else self._top
+            return self._top.get_winner()
         elif self._result == Result.BOTTOM_WINS:
-            bot_is_match_inst = isinstance(self._top, Match)
-            return self._bottom.winner if bot_is_match_inst else self._bottom
+            return self._bottom.get_winner()
         else:
             return
 

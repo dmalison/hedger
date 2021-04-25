@@ -22,7 +22,7 @@ class MatchTest(unittest.TestCase):
         )
 
         self.assertEqual(repr(match), expected)
-        self.assertEqual(match.winner, entry_a)
+        self.assertEqual(match.get_winner(), entry_a)
 
     def test_match_with_two_submatches(self):
         entry_a = hedger.Entry('A')
@@ -68,7 +68,7 @@ class MatchTest(unittest.TestCase):
         expected = expected_fmt.format(top=top_str, bottom=bottom_str)
 
         self.assertEqual(repr(match), expected)
-        self.assertEqual(match.winner, entry_d)
+        self.assertEqual(match.get_winner(), entry_d)
 
     def test_matches_with_same_entries_are_equal(self):
         entry_a = hedger.Entry('A')
@@ -187,4 +187,4 @@ class MatchTest(unittest.TestCase):
             bottom=entry_b,
             result="not a valid result"
         )
-        self.assertIsNone(match.winner)
+        self.assertIsNone(match.get_winner())
