@@ -21,7 +21,7 @@ class Bracket:
             score = self._compute_round_score(matches, winners)
             total_score += score
 
-        return score
+        return total_score
 
     def _get_match_count(self):
         match_count = utils.MapToCounts()

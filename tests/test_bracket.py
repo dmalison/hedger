@@ -5,28 +5,25 @@ from hedger.result import Result
 
 
 class BracketTest(unittest.TestCase):
-    def test_score_against_two_teams_with_correct_bracket(self):
-        gryffindor = hedger.Entry('Gryffindor')
-        slytherin = hedger.Entry('Slytherin')
-        entries = [gryffindor, slytherin]
-        quidditch_cup = hedger.Tournament(entries)
-        bracket = quidditch_cup.make_bracket([Result.TOP_WINS])
-        scoring_bracket = quidditch_cup.make_bracket([Result.TOP_WINS])
+    def setUp(self):
+        self.gryffindor = hedger.Entry('Gryffindor')
+        self.slytherin = hedger.Entry('Slytherin')
+        self.entries = [self.gryffindor, self.slytherin]
+        self.tournament = hedger.Tournament(self.entries)
+        self.bracket = self.tournament.make_bracket([Result.TOP_WINS])
 
-        actual = bracket.score_against(scoring_bracket)
+    def test_score_against_two_teams_with_correct_bracket(self):
+        scoring_bracket = self.tournament.make_bracket([Result.TOP_WINS])
+
+        actual = self.bracket.score_against(scoring_bracket)
         expected = 320
 
         self.assertEqual(actual, expected)
 
     def test_score_against_two_teams_with_incorrect_bracket(self):
-        gryffindor = hedger.Entry('Gryffindor')
-        slytherin = hedger.Entry('Slytherin')
-        entries = [gryffindor, slytherin]
-        quidditch_cup = hedger.Tournament(entries)
-        bracket = quidditch_cup.make_bracket([Result.TOP_WINS])
-        scoring_bracket = quidditch_cup.make_bracket([Result.BOTTOM_WINS])
+        scoring_bracket = self.tournament.make_bracket([Result.BOTTOM_WINS])
 
-        actual = bracket.score_against(scoring_bracket)
+        actual = self.bracket.score_against(scoring_bracket)
         expected = 0
 
         self.assertEqual(actual, expected)
