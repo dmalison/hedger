@@ -11,7 +11,7 @@ class Bracket:
     def matches(self):
         return self._matches
 
-    def score_against(self, scoring_bracket):
+    def compute_score(self, scoring_bracket):
         match_count = self._get_match_count()
         winners_count = self._get_winners_count(scoring_bracket)
 
