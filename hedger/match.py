@@ -22,6 +22,24 @@ class Match:
         else:
             return
 
+    def get_result_probabilities(self):
+        rating_diff = self._compute_rating_diff()
+        top_win_prob = self._compute_win_probability(rating_diff)
+        bottom_win_prob = self._compute_win_probability(-rating_diff)
+        return {
+            Result.TOP_WINS: top_win_prob,
+            Result.BOTTOM_WINS: bottom_win_prob
+        }
+
+    def _compute_rating_diff(self):
+        top_rating = self._top.get_winner().rating
+        bottom_rating = self._bottom.get_winner().rating
+        return top_rating - bottom_rating
+
+    def _compute_win_probability(self, rating_diff):
+        p = 1.0 / (1.0 + 10 ** (-rating_diff * 30.464/400))
+        return p
+
     def __repr__(self):
         repr_fmt = (
             "Match(round_={round_}, index={index}, top={top}, "

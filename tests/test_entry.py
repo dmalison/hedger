@@ -8,6 +8,10 @@ class EntryTest(unittest.TestCase):
         my_team = hedger.Entry('my_team')
         self.assertEqual(repr(my_team), "Entry('my_team')")
 
+    def test_entry_repr_with_rating(self):
+        my_team = hedger.Entry('my_team', 100)
+        self.assertEqual(repr(my_team), "Entry('my_team', 100)")
+
     def test_empty_entry_repr(self):
         empty_team = hedger.EmptyEntry()
         self.assertEqual(repr(empty_team), "EmptyEntry()")

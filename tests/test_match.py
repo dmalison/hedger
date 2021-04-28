@@ -141,3 +141,42 @@ class MatchTest(unittest.TestCase):
             result="not a valid result"
         )
         self.assertIsNone(match_with_invalid_result.get_winner())
+
+    def test_get_result_probabilities_of_equally_rated_teams(self):
+        entry_1 = hedger.Entry('Team 1', 100)
+        entry_2 = hedger.Entry('Team 2', 100)
+
+        match = hedger.Match(
+            round_=0,
+            index=0,
+            top=entry_1,
+            bottom=entry_2,
+            result=Result.TOP_WINS
+        )
+
+        expected = {
+            Result.TOP_WINS: .5,
+            Result.BOTTOM_WINS: .5
+        }
+
+        self.assertDictEqual(match.get_result_probabilities(), expected)
+
+    def test_get_result_probabilities_using_example_from_538_csv(self):
+        virginia = hedger.Entry('Virginia', 88.07)
+        ohio = hedger.Entry('Ohio', 77.51)
+
+        match = hedger.Match(
+            round_=0,
+            index=4,
+            top=virginia,
+            bottom=ohio,
+            result=Result.BOTTOM_WINS
+        )
+
+        expected = {
+            Result.TOP_WINS: .864,
+            Result.BOTTOM_WINS: .136
+        }
+
+        for result, p in match.get_result_probabilities().items():
+            self.assertAlmostEqual(p, expected.get(result), 3)
