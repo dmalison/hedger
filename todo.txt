@@ -1,4 +1,2 @@
-- Make Scorer
-- Make generate_all_brackets()
-- Add team power / probabilities
 - Add CLI
+- from_yaml

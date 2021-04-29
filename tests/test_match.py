@@ -1,7 +1,7 @@
 import unittest
 
 import hedger
-from hedger.result import Result
+from hedger import Result
 
 
 class MatchTest(unittest.TestCase):

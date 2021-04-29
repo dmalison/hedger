@@ -1,4 +1,4 @@
-from hedger.result import Result
+from hedger import Result
 
 
 class Match:

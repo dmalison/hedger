@@ -1,7 +1,7 @@
 import unittest
 
 import hedger
-from hedger.result import Result
+from hedger import Result
 
 
 class BracketTest(unittest.TestCase):
@@ -23,10 +23,10 @@ class BracketTest(unittest.TestCase):
         ]
 
         self.tournament = hedger.Tournament(entries)
-        self.bracket = self.tournament.make_bracket(self.results)
+        self.bracket = self.tournament._make_bracket(self.results)
 
     def test_compute_score_with_correct_bracket(self):
-        scoring_bracket = self.tournament.make_bracket(self.results)
+        scoring_bracket = self.tournament._make_bracket(self.results)
 
         actual = self.bracket.compute_score(scoring_bracket)
         expected = 640
@@ -34,7 +34,7 @@ class BracketTest(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_compute_score_with_incorrect_bracket(self):
-        scoring_bracket = self.tournament.make_bracket(
+        scoring_bracket = self.tournament._make_bracket(
             [Result.BOTTOM_WINS, Result.TOP_WINS, Result.TOP_WINS]
         )
 
@@ -44,7 +44,7 @@ class BracketTest(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_compute_score_with_partially_correct_bracket(self):
-        scoring_bracket = self.tournament.make_bracket(
+        scoring_bracket = self.tournament._make_bracket(
             [Result.TOP_WINS, Result.TOP_WINS, Result.TOP_WINS]
         )
 

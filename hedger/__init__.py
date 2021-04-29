@@ -1,3 +1,4 @@
+from hedger.result import Result
 from hedger.bracket import Bracket
 from hedger.entry import Entry, EmptyEntry
 from hedger.match import Match
