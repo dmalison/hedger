@@ -52,3 +52,8 @@ class BracketTest(unittest.TestCase):
         expected = 480
 
         self.assertEqual(actual, expected)
+
+    def test_results_index(self):
+        expected = 5
+        actual = self.bracket.results_index
+        self.assertEqual(expected, actual)
