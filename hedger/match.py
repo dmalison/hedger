@@ -14,6 +14,10 @@ class Match:
     def round(self):
         return self._round
 
+    @property
+    def result(self):
+        return self._result
+
     def get_winner(self):
         if self._result == Result.TOP_WINS:
             return self._top.get_winner()

@@ -10,7 +10,7 @@ class BracketTest(unittest.TestCase):
         slytherin = hedger.Entry('Slytherin')
         ravenclaw = hedger.Entry('Ravenclaw')
         hufflepuff = hedger.Entry('Hufflepuff')
-        entries = [
+        self.entries = [
             gryffindor,
             ravenclaw,
             hufflepuff,
@@ -22,11 +22,11 @@ class BracketTest(unittest.TestCase):
             Result.TOP_WINS
         ]
 
-        self.tournament = hedger.Tournament(entries)
-        self.bracket = self.tournament._make_bracket(self.results)
+        bracket_builder = hedger.BracketBuilder(self.entries, self.results)
+        self.bracket = bracket_builder.get_bracket()
 
     def test_compute_score_with_correct_bracket(self):
-        scoring_bracket = self.tournament._make_bracket(self.results)
+        scoring_bracket = self.bracket
 
         actual = self.bracket.compute_score(scoring_bracket)
         expected = 640
@@ -34,9 +34,9 @@ class BracketTest(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_compute_score_with_incorrect_bracket(self):
-        scoring_bracket = self.tournament._make_bracket(
-            [Result.BOTTOM_WINS, Result.TOP_WINS, Result.TOP_WINS]
-        )
+        new_results = [Result.BOTTOM_WINS, Result.TOP_WINS, Result.TOP_WINS]
+        bracket_builder = hedger.BracketBuilder(self.entries, new_results)
+        scoring_bracket = bracket_builder.get_bracket()
 
         actual = self.bracket.compute_score(scoring_bracket)
         expected = 0
@@ -44,9 +44,9 @@ class BracketTest(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_compute_score_with_partially_correct_bracket(self):
-        scoring_bracket = self.tournament._make_bracket(
-            [Result.TOP_WINS, Result.TOP_WINS, Result.TOP_WINS]
-        )
+        new_results = [Result.TOP_WINS, Result.TOP_WINS, Result.TOP_WINS]
+        bracket_builder = hedger.BracketBuilder(self.entries, new_results)
+        scoring_bracket = bracket_builder.get_bracket()
 
         actual = self.bracket.compute_score(scoring_bracket)
         expected = 480
