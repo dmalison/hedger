@@ -53,7 +53,7 @@ class BracketTest(unittest.TestCase):
 
         self.assertEqual(actual, expected)
 
-    def test_results_index(self):
+    def test_results_code(self):
         expected = 5
-        actual = self.bracket.results_index
+        actual = self.bracket.results_code
         self.assertEqual(expected, actual)

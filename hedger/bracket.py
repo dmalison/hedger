@@ -13,14 +13,14 @@ class Bracket:
         return self._matches
 
     @property
-    def results_index(self):
+    def results_code(self):
         binary = self._get_results_binary()
         return int(binary, 2)
-        
+
     def _get_results_binary(self):
         values = [match.result.value for match in self._matches]
         return ''.join(values)
-    
+
     def compute_score(self, scoring_bracket):
         match_count = self._get_match_count()
         winners_count = self._get_winners_count(scoring_bracket)

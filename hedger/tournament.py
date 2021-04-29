@@ -14,8 +14,8 @@ class Tournament:
     def make_all_brackets(self):
         n_brackets = self._get_n_brackets()
         all_brackets = list()
-        for bracket_index in range(n_brackets):
-            results = self._get_results_from_index(bracket_index)
+        for results_code in range(n_brackets):
+            results = self._get_results_from_code(results_code)
             bracket = self._make_bracket(results)
             all_brackets.append(bracket)
         return all_brackets
@@ -28,7 +28,7 @@ class Tournament:
         n_entries = len(self._entries)
         return n_entries - 1
 
-    def _get_results_from_index(self, bracket_index):
+    def _get_results_from_code(self, bracket_index):
         binary = self._convert_to_binary(bracket_index)
         results = [self._decode_bit_as_result(b) for b in binary]
         return results
