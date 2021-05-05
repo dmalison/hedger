@@ -13,7 +13,7 @@ class Bracket:
         return self._matches
 
     @property
-    def results_code(self):
+    def code(self):
         binary = self._get_results_binary()
         return int(binary, 2)
 

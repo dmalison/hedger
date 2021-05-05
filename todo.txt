@@ -1,2 +1,4 @@
-- Add CLI
-- from_yaml
+- generate_score_csv()
+- BracketCode
+- BlankBracket 
+- CLI
