@@ -14,10 +14,10 @@ class Bracket:
 
     @property
     def code(self):
-        binary = self._get_results_binary()
+        binary = self._get_results_as_binary()
         return int(binary, 2)
 
-    def _get_results_binary(self):
+    def _get_results_as_binary(self):
         values = [match.result.value for match in self._matches]
         return ''.join(values)
 
@@ -85,9 +85,9 @@ class BracketBuilder:
 
     def _add_another_round_of_matches(self):
         this_round_matches = self._make_this_round_matches()
-        self._update_recursion(this_round_matches)
+        self._update_state(this_round_matches)
 
-    def _update_recursion(self, this_round_matches):
+    def _update_state(self, this_round_matches):
         self._all_matches.extend(this_round_matches)
         self._round += 1
         self._last_round_matches = this_round_matches

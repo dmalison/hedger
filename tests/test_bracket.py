@@ -53,7 +53,7 @@ class BracketTest(unittest.TestCase):
 
         self.assertEqual(actual, expected)
 
-    def test_results_code(self):
+    def test_bracket_code_with_four_teams(self):
         expected = 5
-        actual = self.bracket.results_code
+        actual = self.bracket.code
         self.assertEqual(expected, actual)

@@ -1,4 +1,3 @@
 - generate_score_csv()
-- BracketCode
 - BlankBracket 
 - CLI
