@@ -2,7 +2,7 @@ import csv
 
 
 class CsvReader:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath):
         self._filepath = filepath
         self._file = None
         self._reader = None
