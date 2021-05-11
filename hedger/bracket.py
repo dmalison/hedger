@@ -18,7 +18,7 @@ class Bracket:
         return int(binary, 2)
 
     def _get_results_as_binary(self):
-        values = [match.result.value for match in self._matches]
+        values = [str(match.result.value) for match in self._matches]
         return ''.join(values)
 
     def compute_score(self, scoring_bracket):

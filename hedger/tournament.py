@@ -34,7 +34,7 @@ class Tournament:
         return binary_fmt.format(bracket_index)
 
     def _decode_bit_as_result(self, bit):
-        if bit == Result.TOP_WINS.value:
+        if int(bit) == Result.TOP_WINS.value:
             return Result.TOP_WINS
         else:
             return Result.BOTTOM_WINS
