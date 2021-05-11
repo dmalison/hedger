@@ -19,6 +19,7 @@ def _assert_csv_row_count_equal(first_filepath, second_filepath):
             utils.CsvReader(second_filepath)as second_reader:
         first_rows = _count_csv_rows(first_reader)
         second_rows = _count_csv_rows(second_reader)
+
         test_case = unittest.TestCase()
         test_case.assertEqual(first_rows, second_rows)
 

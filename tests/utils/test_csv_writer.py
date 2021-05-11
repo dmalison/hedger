@@ -20,7 +20,7 @@ class CsvWriterTest(unittest.TestCase):
         fixture_filepath = 'tests/data/test_csv_writer_fixture.csv'
         tests_utils.assert_csv_equal(self.csv_filepath, fixture_filepath)
 
-    def test_write_wrong_lines_and_raise_error(self):
+    def test_write_wrong_line_and_raise_error(self):
         with utils.CsvWriter(self.csv_filepath, ['col1', 'col2']) as writer:
             writer.writerow({'col1': 'C', 'col2': 3})
 
