@@ -1,12 +1,22 @@
-PYTHON := python3
+PYTHON_VERSION := 3.8.9
 VENV := .venv
 SRC := hedger/
 TESTS := tests/
 
+.PHONY: python
+ZSHRC := ~/.zshrc
+python:
+	brew upgrade pyenv
+	pyenv install ${PYTHON_VERSION} -s
+	pyenv local ${PYTHON_VERSION}
+	if ! grep -Fq '$$(pyenv init -)' ${ZSHRC}; then \
+		echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$$(pyenv init -)"\nfi' >> ${ZSHRC}; \
+	fi;
+	exec zsh
 
 .PHONY: venv
-venv: 
-	${PYTHON} -m venv ${VENV}
+venv:
+	python -m venv ${VENV}
 	./$(VENV)/bin/pip install -r requirements.txt
 
 .PHONY: clean
@@ -16,11 +26,11 @@ clean:
 
 .PHONY: lint
 lint:
-	${PYTHON} -m flake8 ${SRC} ${TESTS}
+	python -m flake8 ${SRC} ${TESTS}
 
 .PHONY: test
 test:
-	${PYTHON} -m pytest ${TESTS}
+	python -m pytest ${TESTS}
 
 .PHONY: coverage
 coverage:
