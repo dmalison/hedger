@@ -1,1 +1,1 @@
-from hedger.csv_generators.scores_generator import ScoresGenerator
+from hedger.csv_generators.scores import ScoresGenerator

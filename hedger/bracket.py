@@ -12,14 +12,9 @@ class Bracket:
     def matches(self):
         return self._matches
 
-    @property
-    def code(self):
+    def get_code(self):
         binary = self._get_results_as_binary()
         return int(binary, 2)
-
-    def _get_results_as_binary(self):
-        values = [str(match.result.value) for match in self._matches]
-        return ''.join(values)
 
     def compute_score(self, scoring_bracket):
         match_count = self._get_match_count()
@@ -32,6 +27,16 @@ class Bracket:
             total_score += score
 
         return int(total_score)
+
+    def get_prob(self):
+        prob = 1
+        for match in self.matches:
+            prob *= match.get_prob()
+        return prob
+
+    def _get_results_as_binary(self):
+        values = [str(match.result.value) for match in self._matches]
+        return ''.join(values)
 
     def _get_match_count(self):
         match_count = utils.MapToCounts()

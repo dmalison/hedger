@@ -6,10 +6,10 @@ from hedger import Result
 
 class BracketTest(unittest.TestCase):
     def setUp(self):
-        gryffindor = hedger.Entry('Gryffindor')
-        slytherin = hedger.Entry('Slytherin')
-        ravenclaw = hedger.Entry('Ravenclaw')
-        hufflepuff = hedger.Entry('Hufflepuff')
+        gryffindor = hedger.Entry('Gryffindor', rating=100)
+        slytherin = hedger.Entry('Slytherin', rating=100)
+        ravenclaw = hedger.Entry('Ravenclaw', rating=100)
+        hufflepuff = hedger.Entry('Hufflepuff', rating=100)
         self.entries = [
             gryffindor,
             ravenclaw,
@@ -53,7 +53,27 @@ class BracketTest(unittest.TestCase):
 
         self.assertEqual(actual, expected)
 
-    def test_bracket_code_with_four_teams(self):
+    def test_get_code_with_four_teams(self):
         expected = 5
-        actual = self.bracket.code
+        actual = self.bracket.get_code()
         self.assertEqual(expected, actual)
+
+    def test_get_prob_with_four_teams_with_equal_ratings(self):
+        expected = .125
+        actual = self.bracket.get_prob()
+        self.assertEqual(actual, expected)
+
+    def test_get_prob_with_four_teams_with_unequal_ratings(self):
+        expected = .169
+
+        gryffindor = hedger.Entry('Gryffindor', rating=106.264)
+        slytherin = hedger.Entry('Slytherin', rating=93.736)
+        ravenclaw = hedger.Entry('Ravenclaw', rating=100)
+        hufflepuff = hedger.Entry('Hufflepuff', rating=100)
+
+        entries = [gryffindor, ravenclaw, hufflepuff, slytherin]
+        bracket_builder = hedger.BracketBuilder(entries, self.results)
+        bracket = bracket_builder.get_bracket()
+
+        actual = bracket.get_prob()
+        self.assertAlmostEqual(actual, expected, 3)

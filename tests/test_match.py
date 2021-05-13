@@ -145,7 +145,6 @@ class MatchTest(unittest.TestCase):
     def test_get_result_probabilities_of_equally_rated_teams(self):
         entry_1 = hedger.Entry('Team 1', 100)
         entry_2 = hedger.Entry('Team 2', 100)
-
         match = hedger.Match(
             round_=0,
             index=0,
@@ -154,17 +153,13 @@ class MatchTest(unittest.TestCase):
             result=Result.TOP_WINS
         )
 
-        expected = {
-            Result.TOP_WINS: .5,
-            Result.BOTTOM_WINS: .5
-        }
-
-        self.assertDictEqual(match.get_result_probabilities(), expected)
+        expected = .5
+        actual = match.get_prob()
+        self.assertEqual(actual, expected)
 
     def test_get_result_probabilities_using_example_from_538_csv(self):
         virginia = hedger.Entry('Virginia', 88.07)
         ohio = hedger.Entry('Ohio', 77.51)
-
         match = hedger.Match(
             round_=0,
             index=4,
@@ -173,10 +168,6 @@ class MatchTest(unittest.TestCase):
             result=Result.BOTTOM_WINS
         )
 
-        expected = {
-            Result.TOP_WINS: .864,
-            Result.BOTTOM_WINS: .136
-        }
-
-        for result, p in match.get_result_probabilities().items():
-            self.assertAlmostEqual(p, expected.get(result), 3)
+        expected = .136
+        actual = match.get_prob()
+        self.assertAlmostEqual(actual, expected, 3)
