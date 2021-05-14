@@ -1,4 +1,4 @@
-def isint(x):
+def is_str_int(x):
     try:
         int(x)
         return True
@@ -6,7 +6,7 @@ def isint(x):
         return False
 
 
-def isfloat(x):
+def is_str_float(x):
     try:
         float(x)
         return True

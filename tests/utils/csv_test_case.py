@@ -40,16 +40,16 @@ class CsvTestCase(unittest.TestCase):
 
     def _assert_dicts_almost_equal(self, first_line, second_line, places):
         self._assert_keys_equal(first_line, second_line)
-        for k, first_value in first_line.items():
-            second_value = second_line[k]
-            if utils.isfloat(first_value) or utils.isfloat(second_value):
+        for k, first_v in first_line.items():
+            second_v = second_line[k]
+            if isinstance(first_v, float) and isinstance(second_v, float):
                 self.assertAlmostEqual(
-                    first_value,
-                    second_value,
+                    first_v,
+                    second_v,
                     places=places
                 )
             else:
-                self.assertEqual(first_value, second_value)
+                self.assertEqual(first_v, second_v)
 
     def _assert_keys_equal(self, first_line, second_line):
         self.assertListEqual(list(first_line.keys()), list(second_line.keys()))

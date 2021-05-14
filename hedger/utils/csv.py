@@ -26,10 +26,30 @@ class CsvReader:
 
     def _cast_numeric_values(self, row):
         for k, v in row.items():
-            if utils.isint(v):
+            if utils.is_str_int(v):
                 row[k] = int(v)
-            elif utils.isfloat(v):
+            elif utils.is_str_float(v):
                 row[k] = float(v)
 
     def __iter__(self):
         return self
+
+
+class CsvWriter:
+    def __init__(self, filepath, fieldnames):
+        self._filepath = filepath
+        self._fieldnames = fieldnames
+        self._file = None
+        self._writer = None
+
+    def __enter__(self):
+        self._file = open(self._filepath, 'w', newline='')
+        self._writer = csv.DictWriter(self._file, self._fieldnames)
+        self._writer.writeheader()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._file.close()
+
+    def writerow(self, row) -> None:
+        self._writer.writerow(row)
