@@ -28,7 +28,7 @@ class BracketTest(unittest.TestCase):
     def test_compute_score_with_correct_bracket(self):
         scoring_bracket = self.bracket
 
-        actual = self.bracket.compute_score(scoring_bracket)
+        actual = self.bracket.get_score(scoring_bracket)
         expected = 640
 
         self.assertEqual(actual, expected)
@@ -38,7 +38,7 @@ class BracketTest(unittest.TestCase):
         bracket_builder = hedger.BracketBuilder(self.entries, new_results)
         scoring_bracket = bracket_builder.get_bracket()
 
-        actual = self.bracket.compute_score(scoring_bracket)
+        actual = self.bracket.get_score(scoring_bracket)
         expected = 0
 
         self.assertEqual(actual, expected)
@@ -48,7 +48,7 @@ class BracketTest(unittest.TestCase):
         bracket_builder = hedger.BracketBuilder(self.entries, new_results)
         scoring_bracket = bracket_builder.get_bracket()
 
-        actual = self.bracket.compute_score(scoring_bracket)
+        actual = self.bracket.get_score(scoring_bracket)
         expected = 480
 
         self.assertEqual(actual, expected)

@@ -8,5 +8,5 @@ class AllPairsTest(unittest.TestCase):
         expected = [('A', 'A'), ('A', 'B'), ('A', 'C'),
                     ('B', 'A'), ('B', 'B'), ('B', 'C'),
                     ('C', 'A'), ('C', 'B'), ('C', 'C')]
-        actual = list(utils.all_pairs('ABC'))
+        actual = list(utils.all_pairs_product('ABC'))
         self.assertListEqual(expected, actual)

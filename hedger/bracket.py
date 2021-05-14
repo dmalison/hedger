@@ -16,14 +16,14 @@ class Bracket:
         binary = self._get_results_as_binary()
         return int(binary, 2)
 
-    def compute_score(self, scoring_bracket):
+    def get_score(self, scoring_bracket):
         match_count = self._get_match_count()
         winners_count = self._get_winners_count(scoring_bracket)
 
         total_score = 0
         for round_, matches in match_count.items():
             winners = winners_count.get(round_, 0)
-            score = self._compute_round_score(matches, winners)
+            score = self._get_round_score(matches, winners)
             total_score += score
 
         return int(total_score)
@@ -58,7 +58,7 @@ class Bracket:
     def _check_if_winner_is_correct(self, match, scoring_match):
         return match.get_winner() == scoring_match.get_winner()
 
-    def _compute_round_score(self, matches, winners):
+    def _get_round_score(self, matches, winners):
         return winners / matches * self.POINTS_PER_ROUND
 
 
@@ -74,7 +74,7 @@ class BracketBuilder:
 
     def get_bracket(self):
         self._initialize_recursion()
-        while self._bracket_incomplete():
+        while self._is_bracket_incomplete():
             self._add_another_round_of_matches()
 
         return hedger.Bracket(self._all_matches)
@@ -85,7 +85,7 @@ class BracketBuilder:
         self._all_matches = list()
         self._round = 0
 
-    def _bracket_incomplete(self):
+    def _is_bracket_incomplete(self):
         return len(self._last_round_matches) > 1
 
     def _add_another_round_of_matches(self):
