@@ -1,11 +1,7 @@
-import hedger
-from hedger import utils
+from hedger import utils, csv_generators
 
 
-class ScoresGenerator:
-    def __init__(self, teams):
-        self._teams = teams
-
+class ScoresGenerator(csv_generators.CsvGenerator):
     def write(self, filepath='data/scores.csv'):
         fieldnames = ['bracket_code', 'scoring_bracket_code', 'score']
         with utils.CsvWriter(filepath, fieldnames) as writer:
@@ -18,14 +14,3 @@ class ScoresGenerator:
                     'score': score
                 }
                 writer.writerow(row)
-
-    def _get_all_brackets(self):
-        tournament = self._get_tournament()
-        return tournament.make_all_brackets()
-
-    def _get_tournament(self):
-        entries = self._get_entries()
-        return hedger.Tournament(entries)
-
-    def _get_entries(self):
-        return [hedger.Entry(team) for team in self._teams]
