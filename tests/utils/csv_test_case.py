@@ -11,7 +11,7 @@ class CsvTestCase(unittest.TestCase):
         if utils.path_exists(self.temp_filepath):
             utils.remove(self.temp_filepath)
 
-    def assertCsvEqual(self, first_filepath: str, second_filepath):
+    def assertCsvEqual(self, first_filepath, second_filepath):
         self._assert_csv_row_count_equal(first_filepath, second_filepath)
 
         with utils.CsvReader(first_filepath) as first_reader, \
@@ -20,23 +20,34 @@ class CsvTestCase(unittest.TestCase):
             for first_line, second_line in zip(first_reader, second_reader):
                 self.assertDictEqual(first_line, second_line)
 
-    .75 * .25 * .10
-
-    def assertCsvAlmostEqual(self, first_filepath: str, second_filepath, places=None):
+    def assertCsvAlmostEqual(
+            self,
+            first_filepath,
+            second_filepath,
+            places=None
+    ):
         self._assert_csv_row_count_equal(first_filepath, second_filepath)
 
         with utils.CsvReader(first_filepath) as first_reader, \
                 utils.CsvReader(second_filepath)as second_reader:
 
             for first_line, second_line in zip(first_reader, second_reader):
-                self._assert_dicts_almost_equal(first_line, second_line, places)
+                self._assert_dicts_almost_equal(
+                    first_line,
+                    second_line,
+                    places
+                )
 
     def _assert_dicts_almost_equal(self, first_line, second_line, places):
         self._assert_keys_equal(first_line, second_line)
         for k, first_value in first_line.items():
             second_value = second_line[k]
             if utils.isfloat(first_value) or utils.isfloat(second_value):
-                self.assertAlmostEqual(first_value, second_value, places=places)
+                self.assertAlmostEqual(
+                    first_value,
+                    second_value,
+                    places=places
+                )
             else:
                 self.assertEqual(first_value, second_value)
 
