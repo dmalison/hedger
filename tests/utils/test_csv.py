@@ -16,7 +16,6 @@ class CsvReaderTest(unittest.TestCase):
             self.assertListEqual(expected, list(reader))
 
 
-
 class CsvWriterTest(tests_utils.CsvTestCase):
     def test_write_lines_and_check_against_fixture(self):
         with utils.CsvWriter(self.temp_filepath, ['col1', 'col2']) as writer:
