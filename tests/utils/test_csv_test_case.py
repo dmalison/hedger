@@ -1,7 +1,7 @@
 from tests import utils as tests_utils
 
 
-class AssertCsvEqualTest(tests_utils.CsvTestCase):
+class CsvTestCaseTest(tests_utils.CsvTestCase):
     def test_assert_csv_equal_on_two_equal_csvs(self):
         first = 'tests/data/test_assert_csv_first_fixture.csv'
         second = 'tests/data/test_assert_csv_second_fixture.csv'

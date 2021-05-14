@@ -3,7 +3,7 @@ import unittest
 from hedger import utils
 
 
-class NumericTypeChecksTest(unittest.TestCase):
+class StrChecksTest(unittest.TestCase):
     def test_isint_with_zero_returns_true(self):
         self.assertTrue(utils.is_str_int("0"))
 

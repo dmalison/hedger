@@ -3,7 +3,7 @@ import unittest
 from hedger import utils
 
 
-class RemoveTest(unittest.TestCase):
+class OsTest(unittest.TestCase):
     def test_write_and_remove_a_file(self):
         filepath = 'tests/data/test_remove.txt'
         self.assertFalse(utils.path_exists(filepath))
