@@ -15,12 +15,6 @@ class CsvReaderTest(unittest.TestCase):
         with utils.CsvReader(fixture_path, ('col1', 'col2', 'col3')) as reader:
             self.assertListEqual(expected, reader.read_all())
 
-    def test_reader_raises_error_when_fieldnames_does_not_match_header(self):
-        fixture_path = 'tests/data/test_csv_reader_fixture.csv'
-        with self.assertRaises(ValueError):
-            with utils.CsvReader(fixture_path, ('col1', 'col2')):
-                pass
-
 
 class CsvWriterTest(tests_utils.CsvTestCase):
     def test_write_lines_and_check_against_fixture(self):
