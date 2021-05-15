@@ -18,7 +18,7 @@ class DiscreteDistTest(unittest.TestCase):
             'p10': 1,
             'p90': 4
         }
-        actual = dist.describe()
+        actual = dist.summarize()
 
         self.assertDictEqual(actual, expected)
 
@@ -36,7 +36,7 @@ class DiscreteDistTest(unittest.TestCase):
             'p10': 1,
             'p90': 4
         }
-        actual = dist.describe()
+        actual = dist.summarize()
 
         self.assertDictEqual(actual, expected)
 
@@ -55,6 +55,6 @@ class DiscreteDistTest(unittest.TestCase):
             'p10': 0,
             'p90': 20
         }
-        actual = dist.describe()
+        actual = dist.summarize()
 
         self.assertDictEqual(actual, expected)

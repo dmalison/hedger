@@ -4,14 +4,14 @@ from hedger import utils
 
 
 class CsvReader:
-    def __init__(self, filepath, cast_numeric=True):
-        self._filepath = filepath
+    def __init__(self, path, cast_numeric=True):
+        self._path = path
         self._file = None
         self._reader = None
         self._cast_numeric = cast_numeric
 
     def __enter__(self):
-        self._file = open(self._filepath, 'r', newline='')
+        self._file = open(self._path, 'r', newline='')
         self._reader = csv.DictReader(self._file)
         return self
 
@@ -24,6 +24,12 @@ class CsvReader:
             self._cast_numeric_values(row)
         return row
 
+    def __iter__(self):
+        return self
+
+    def read_all(self):
+        return list(self)
+
     def _cast_numeric_values(self, row):
         for k, v in row.items():
             if utils.is_str_int(v):
@@ -31,19 +37,16 @@ class CsvReader:
             elif utils.is_str_float(v):
                 row[k] = float(v)
 
-    def __iter__(self):
-        return self
-
 
 class CsvWriter:
-    def __init__(self, filepath, fieldnames):
-        self._filepath = filepath
+    def __init__(self, path, fieldnames):
+        self._path = path
         self._fieldnames = fieldnames
         self._file = None
         self._writer = None
 
     def __enter__(self):
-        self._file = open(self._filepath, 'w', newline='')
+        self._file = open(self._path, 'w', newline='')
         self._writer = csv.DictWriter(self._file, self._fieldnames)
         self._writer.writeheader()
         return self

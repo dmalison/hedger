@@ -3,12 +3,13 @@ import abc
 import hedger
 
 
-class CsvGenerator(abc.ABC):
-    def __init__(self, teams):
+class Writer(abc.ABC):
+    def __init__(self, teams, path):
         self._teams = teams
+        self._path = path
 
     @abc.abstractmethod
-    def write(self, filepath):
+    def write(self):
         pass
 
     def _get_all_brackets(self):

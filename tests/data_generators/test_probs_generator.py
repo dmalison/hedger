@@ -1,4 +1,4 @@
-from hedger import utils, csv_generators
+from hedger import utils, writers
 from tests import utils as tests_utils
 
 
@@ -11,10 +11,11 @@ class ProbsGeneratorTest(tests_utils.CsvTestCase):
             {'name': 'Slytherin', 'rating': 100},
         ]
 
-        probs_generator = csv_generators.ProbsGenerator(teams)
-        probs_generator.write(self.temp_filepath)
+        probs_generator = writers.ProbsWriter(teams)
+        probs_generator._path = self.temp_path
+        probs_generator.write()
 
-        with utils.CsvReader(self.temp_filepath) as reader:
+        with utils.CsvReader(self.temp_path) as reader:
             for row in reader:
                 self.assertEqual(row['prob'], .125)
 
@@ -26,8 +27,9 @@ class ProbsGeneratorTest(tests_utils.CsvTestCase):
             {'name': 'Slytherin', 'rating': 93.736},
         ]
 
-        probs_generator = csv_generators.ProbsGenerator(teams)
-        probs_generator.write(self.temp_filepath)
+        probs_generator = writers.ProbsWriter(teams)
+        probs_generator._path = self.temp_path
+        probs_generator.write()
 
-        fixture_filepath = "tests/data/test_generate_probs_csv_fixture.csv"
-        self.assertCsvAlmostEqual(self.temp_filepath, fixture_filepath, 4)
+        fixture_path = "tests/data/test_generate_probs_csv_fixture.csv"
+        self.assertCsvAlmostEqual(self.temp_path, fixture_path, 4)

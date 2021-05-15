@@ -1,4 +1,4 @@
-from hedger import csv_generators
+from hedger import writers
 from tests import utils as tests_utils
 
 
@@ -11,8 +11,9 @@ class ScoresGeneratorTest(tests_utils.CsvTestCase):
             {'name': 'Illinois'}
         ]
 
-        scores_generator = csv_generators.ScoresGenerator(teams)
-        scores_generator.write(self.temp_filepath)
+        scores_generator = writers.ScoresWriter(teams)
+        scores_generator._path = self.temp_path
+        scores_generator.write()
 
-        fixture_filepath = "tests/data/test_generate_scores_csv_fixture.csv"
-        self.assertCsvEqual(self.temp_filepath, fixture_filepath)
+        fixture_path = "tests/data/test_generate_scores_csv_fixture.csv"
+        self.assertCsvEqual(self.temp_path, fixture_path)
