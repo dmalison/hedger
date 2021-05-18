@@ -1,6 +1,7 @@
+old/*
 .venv/
-*.pyc
 .idea/
 .coverage
 .python-version
-old/*
+*.pyc
+*.DS_Store
