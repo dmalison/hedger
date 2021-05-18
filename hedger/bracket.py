@@ -35,6 +35,9 @@ class Bracket:
             self._make_dist()
         return self._dist
 
+    def summarize(self):
+        return self.dist.summarize()
+
     def _make_code(self):
         binary = self._get_results_as_binary()
         self._code = int(binary, 2)

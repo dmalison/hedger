@@ -81,3 +81,15 @@ class BracketTest(unittest.TestCase):
             self.assertEqual(actual_point.omega, expected_point.omega)
             self.assertEqual(actual_point.value, expected_point.value)
             self.assertAlmostEqual(actual_point.prob, expected_point.prob, 4)
+
+    def test_summarize_with_four_equal_teams(self):
+        expected = utils.Summary(mean=240, p10=0, p90=640)
+        actual = self.equal_bracket.summarize()
+        self.assertEqual(actual, expected)
+
+    def test_summarize_with_four_unequal_teams(self):
+        expected = utils.Summary(mean=349, p10=0, p90=640)
+        actual = self.unequal_bracket.summarize()
+        self.assertEqual(actual.p10, expected.p10)
+        self.assertEqual(actual.p90, expected.p90)
+        self.assertAlmostEqual(actual.mean, expected.mean, 1)
