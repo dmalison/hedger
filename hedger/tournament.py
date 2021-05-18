@@ -5,19 +5,24 @@ from hedger import Result
 class Tournament:
     def __init__(self, entries):
         self._entries = entries
+        self._brackets = self._get_brackets()
 
     @property
     def entries(self):
         return self._entries
 
-    def get_brackets(self):
+    @property
+    def brackets(self):
+        return self._brackets
+
+    def _get_brackets(self):
         n_brackets = self._get_n_brackets()
-        all_brackets = list()
+        brackets = list()
         for code in range(n_brackets):
             results = self._get_results_from_code(code)
             bracket = self._make_bracket(results)
-            all_brackets.append(bracket)
-        return all_brackets
+            brackets.append(bracket)
+        return brackets
 
     def _get_n_brackets(self):
         n_matches = self._get_n_matches()

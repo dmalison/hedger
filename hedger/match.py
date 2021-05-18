@@ -1,3 +1,5 @@
+import functools
+
 from hedger import Result
 
 

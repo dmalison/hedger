@@ -9,18 +9,29 @@ class Bracket:
         self._matches = matches
         self._tournament = tournament
 
+        self._code = self._get_code()
+        self._prob = self._get_prob()
+
     @property
     def matches(self):
         return self._matches
 
+    @property
+    def code(self):
+        return self._code
+
+    @property
+    def prob(self):
+        return self._prob
+
     def summarize(self):
         return self.get_dist().summarize()
 
-    def get_code(self):
+    def _get_code(self):
         binary = self._get_results_as_binary()
         return int(binary, 2)
 
-    def get_prob(self):
+    def _get_prob(self):
         prob = 1
         for match in self.matches:
             prob *= match.get_prob()
@@ -28,11 +39,11 @@ class Bracket:
 
     def get_dist(self):
         points = list()
-        for scoring_bracket in self._tournament.get_brackets():
+        for scoring_bracket in self._tournament.brackets:
             score = self._get_score(scoring_bracket)
             sample_point = utils.Point(
-                omega=scoring_bracket.get_code(),
-                prob=scoring_bracket.get_prob(),
+                omega=scoring_bracket.code,
+                prob=scoring_bracket.prob,
                 value=score
             )
             points.append(sample_point)

@@ -35,18 +35,18 @@ class BracketTest(unittest.TestCase):
 
     def test_code_with_four_teams(self):
         expected = 5
-        actual = self.equal_bracket.get_code()
+        actual = self.equal_bracket.code
         self.assertEqual(expected, actual)
 
     def test_prob_with_four_teams_with_equal_ratings(self):
         expected = .125
-        actual = self.equal_bracket.get_prob()
+        actual = self.equal_bracket.prob
         self.assertEqual(actual, expected)
 
     def test_prob_with_four_teams_with_unequal_ratings(self):
         expected = .169
 
-        actual = self.unequal_bracket.get_prob()
+        actual = self.unequal_bracket.prob
         self.assertAlmostEqual(actual, expected, 3)
 
     def test_make_dist_with_four_equal_teams(self):
