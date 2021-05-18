@@ -28,7 +28,7 @@ class Bracket:
 
     def get_dist(self):
         points = list()
-        for scoring_bracket in self._tournament.brackets:
+        for scoring_bracket in self._tournament.get_brackets():
             score = self._get_score(scoring_bracket)
             sample_point = utils.Point(
                 omega=scoring_bracket.get_code(),

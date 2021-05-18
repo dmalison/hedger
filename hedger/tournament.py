@@ -6,17 +6,11 @@ class Tournament:
     def __init__(self, entries):
         self._entries = entries
 
-        self._brackets = self._make_brackets()
-
     @property
     def entries(self):
         return self._entries
 
-    @property
-    def brackets(self):
-        return self._brackets
-
-    def _make_brackets(self):
+    def get_brackets(self):
         n_brackets = self._get_n_brackets()
         all_brackets = list()
         for code in range(n_brackets):
