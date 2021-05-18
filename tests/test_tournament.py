@@ -5,19 +5,14 @@ from hedger import Result
 
 
 class TournamentTest(unittest.TestCase):
-    def test_make_all_brackets_with_four_teams(self):
+    def test_make_brackets_with_four_teams(self):
         gryffindor = hedger.Entry('Gryffindor')
         slytherin = hedger.Entry('Slytherin')
         ravenclaw = hedger.Entry('Ravenclaw')
         hufflepuff = hedger.Entry('Hufflepuff')
-        entries = [
-            gryffindor,
-            ravenclaw,
-            hufflepuff,
-            slytherin
-        ]
+        entries = [gryffindor, ravenclaw, hufflepuff, slytherin]
         quidditch_cup = hedger.Tournament(entries)
-        all_brackets = quidditch_cup.make_all_brackets()
+        all_brackets = quidditch_cup.brackets
 
         all_results = [
             [Result.BOTTOM_WINS, Result.BOTTOM_WINS, Result.BOTTOM_WINS],

@@ -6,7 +6,17 @@ class Tournament:
     def __init__(self, entries):
         self._entries = entries
 
-    def make_all_brackets(self):
+        self._brackets = self._make_brackets()
+
+    @property
+    def entries(self):
+        return self._entries
+
+    @property
+    def brackets(self):
+        return self._brackets
+
+    def _make_brackets(self):
         n_brackets = self._get_n_brackets()
         all_brackets = list()
         for code in range(n_brackets):
@@ -40,7 +50,7 @@ class Tournament:
             return Result.BOTTOM_WINS
 
     def _make_bracket(self, results):
-        bracket_builder = hedger.BracketBuilder(self._entries, results)
+        bracket_builder = hedger.BracketBuilder(self, results)
         bracket = bracket_builder.get_bracket()
 
         return bracket

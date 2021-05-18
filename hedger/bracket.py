@@ -5,18 +5,59 @@ from hedger import utils
 class Bracket:
     POINTS_PER_ROUND = 320
 
-    def __init__(self, matches):
+    def __init__(self, matches, tournament):
         self._matches = matches
+        self._tournament = tournament
+
+        self._code = None
+        self._prob = None
+        self._dist = None
 
     @property
     def matches(self):
         return self._matches
 
-    def get_code(self):
-        binary = self._get_results_as_binary()
-        return int(binary, 2)
+    @property
+    def code(self):
+        if self._code is None:
+            self._make_code()
+        return self._code
 
-    def get_score(self, scoring_bracket):
+    @property
+    def prob(self):
+        if self._prob is None:
+            self._make_prob()
+        return self._prob
+
+    @property
+    def dist(self):
+        if self._dist is None:
+            self._make_dist()
+        return self._dist
+
+    def _make_code(self):
+        binary = self._get_results_as_binary()
+        self._code = int(binary, 2)
+
+    def _make_prob(self):
+        prob = 1
+        for match in self.matches:
+            prob *= match.get_prob()
+        self._prob = prob
+
+    def _make_dist(self):
+        points = list()
+        for scoring_bracket in self._tournament.brackets:
+            score = self._get_score(scoring_bracket)
+            sample_point = utils.Point(
+                omega=scoring_bracket.code,
+                prob=scoring_bracket.prob,
+                value=score
+            )
+            points.append(sample_point)
+        self._dist = utils.DiscreteDist(points)
+
+    def _get_score(self, scoring_bracket):
         match_count = self._get_match_count()
         winners_count = self._get_winners_count(scoring_bracket)
 
@@ -27,12 +68,6 @@ class Bracket:
             total_score += score
 
         return int(total_score)
-
-    def get_prob(self):
-        prob = 1
-        for match in self.matches:
-            prob *= match.get_prob()
-        return prob
 
     def _get_results_as_binary(self):
         values = [str(match.result.value) for match in self._matches]
@@ -63,8 +98,8 @@ class Bracket:
 
 
 class BracketBuilder:
-    def __init__(self, entries, results):
-        self._entries = entries
+    def __init__(self, tournament, results):
+        self._tournament = tournament
         self._results = results
 
         self._last_round_matches = None
@@ -77,10 +112,10 @@ class BracketBuilder:
         while self._is_bracket_incomplete():
             self._add_another_round_of_matches()
 
-        return hedger.Bracket(self._all_matches)
+        return hedger.Bracket(self._all_matches, self._tournament)
 
     def _initialize_recursion(self):
-        self._last_round_matches = self._entries
+        self._last_round_matches = self._tournament.entries
         self._result_iter = iter(self._results)
         self._all_matches = list()
         self._round = 0

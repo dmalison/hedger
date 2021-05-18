@@ -1,4 +1,4 @@
-PYTHON_VERSION := 3.8.9
+PYTHON_VERSION := 3.9.4
 VENV := .venv
 SRC := hedger/
 TESTS := tests/

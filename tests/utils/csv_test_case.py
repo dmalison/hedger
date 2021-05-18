@@ -4,12 +4,11 @@ from hedger import utils
 
 
 class CsvTestCase(unittest.TestCase):
-    def setUp(self):
-        self.temp_path = 'tests/data/temp.csv'
+    TEMP_PATH = 'tests/data/temp.csv'
 
     def tearDown(self) -> None:
-        if utils.path_exists(self.temp_path):
-            utils.remove(self.temp_path)
+        if utils.path_exists(self.TEMP_PATH):
+            utils.remove(self.TEMP_PATH)
 
     def assertCsvEqual(self, first_path, second_path):
         self._assert_csv_row_count_equal(first_path, second_path)

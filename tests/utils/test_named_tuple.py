@@ -31,3 +31,10 @@ class NamedTupleTest(unittest.TestCase):
 
     def test_named_tuple_asdict(self):
         self.assertDictEqual(self.point._asdict(), {'x': 1, 'y': 2})
+
+    def test_named_tuple_raises_error_if_fields_are_missing(self):
+        with self.assertRaises(TypeError):
+            self.Point(1)
+
+        with self.assertRaises(TypeError):
+            self.Point(y=2)
