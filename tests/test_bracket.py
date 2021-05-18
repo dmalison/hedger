@@ -35,18 +35,18 @@ class BracketTest(unittest.TestCase):
 
     def test_code_with_four_teams(self):
         expected = 5
-        actual = self.equal_bracket.code
+        actual = self.equal_bracket.get_code()
         self.assertEqual(expected, actual)
 
     def test_prob_with_four_teams_with_equal_ratings(self):
         expected = .125
-        actual = self.equal_bracket.prob
+        actual = self.equal_bracket.get_prob()
         self.assertEqual(actual, expected)
 
     def test_prob_with_four_teams_with_unequal_ratings(self):
         expected = .169
 
-        actual = self.unequal_bracket.prob
+        actual = self.unequal_bracket.get_prob()
         self.assertAlmostEqual(actual, expected, 3)
 
     def test_make_dist_with_four_equal_teams(self):
@@ -60,7 +60,7 @@ class BracketTest(unittest.TestCase):
             utils.Point(omega=7, prob=.125, value=480),
             utils.Point(omega=5, prob=.125, value=640)
         ]
-        actual = self.equal_bracket.dist._points
+        actual = self.equal_bracket.get_dist()._points
 
         self.assertEqual(actual, expected)
 
@@ -75,7 +75,7 @@ class BracketTest(unittest.TestCase):
             utils.Point(omega=7, prob=.42188, value=480),
             utils.Point(omega=5, prob=.16875, value=640)
         ]
-        actual = self.unequal_bracket.dist._points
+        actual = self.unequal_bracket.get_dist()._points
 
         for actual_point, expected_point in zip(actual, expected):
             self.assertEqual(actual_point.omega, expected_point.omega)

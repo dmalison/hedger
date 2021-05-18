@@ -9,56 +9,34 @@ class Bracket:
         self._matches = matches
         self._tournament = tournament
 
-        self._code = None
-        self._prob = None
-        self._dist = None
-
     @property
     def matches(self):
         return self._matches
 
-    @property
-    def code(self):
-        if self._code is None:
-            self._make_code()
-        return self._code
-
-    @property
-    def prob(self):
-        if self._prob is None:
-            self._make_prob()
-        return self._prob
-
-    @property
-    def dist(self):
-        if self._dist is None:
-            self._make_dist()
-        return self._dist
-
     def summarize(self):
-        return self.dist.summarize()
+        return self.get_dist().summarize()
 
-    def _make_code(self):
+    def get_code(self):
         binary = self._get_results_as_binary()
-        self._code = int(binary, 2)
+        return int(binary, 2)
 
-    def _make_prob(self):
+    def get_prob(self):
         prob = 1
         for match in self.matches:
             prob *= match.get_prob()
-        self._prob = prob
+        return prob
 
-    def _make_dist(self):
+    def get_dist(self):
         points = list()
         for scoring_bracket in self._tournament.brackets:
             score = self._get_score(scoring_bracket)
             sample_point = utils.Point(
-                omega=scoring_bracket.code,
-                prob=scoring_bracket.prob,
+                omega=scoring_bracket.get_code(),
+                prob=scoring_bracket.get_prob(),
                 value=score
             )
             points.append(sample_point)
-        self._dist = utils.DiscreteDist(points)
+        return utils.DiscreteDist(points)
 
     def _get_score(self, scoring_bracket):
         match_count = self._get_match_count()
