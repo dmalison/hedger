@@ -21,7 +21,8 @@ class Entry:
         else:
             return False
 
-    def get_winner(self):
+    @property
+    def winner(self):
         return self
 
     @property

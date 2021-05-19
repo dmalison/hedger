@@ -33,7 +33,7 @@ class MatchTest(unittest.TestCase):
         )
 
         self.assertEqual(repr(match), expected)
-        self.assertEqual(match.get_winner(), self.entry_a)
+        self.assertEqual(match.winner, self.entry_a)
 
     def test_match_with_two_submatches(self):
         submatch_0 = hedger.Match(
@@ -75,7 +75,7 @@ class MatchTest(unittest.TestCase):
         expected = expected_fmt.format(top=top_str, bottom=bottom_str)
 
         self.assertEqual(repr(match), expected)
-        self.assertEqual(match.get_winner(), self.entry_d)
+        self.assertEqual(match.winner, self.entry_d)
 
     def test_matches_with_same_entries_are_equal(self):
         duplicate_match = hedger.Match(
@@ -140,7 +140,7 @@ class MatchTest(unittest.TestCase):
             bottom=self.entry_b,
             result="not a valid result"
         )
-        self.assertIsNone(match_with_invalid_result.get_winner())
+        self.assertIsNone(match_with_invalid_result.winner)
 
     def test_get_result_probabilities_of_equally_rated_teams(self):
         entry_1 = hedger.Entry('Team 1', 100)

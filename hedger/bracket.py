@@ -83,7 +83,7 @@ class Bracket:
         return winners_count
 
     def _check_if_winner_is_correct(self, match, scoring_match):
-        return match.get_winner() == scoring_match.get_winner()
+        return match.winner == scoring_match.winner
 
     def _get_round_score(self, matches, winners):
         return winners / matches * self.POINTS_PER_ROUND

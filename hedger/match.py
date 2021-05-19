@@ -12,6 +12,8 @@ class Match:
         self._bottom = bottom
         self._result = result
 
+        self._winner = self._get_winner()
+
     @property
     def round(self):
         return self._round
@@ -20,13 +22,15 @@ class Match:
     def result(self):
         return self._result
 
-    def get_winner(self):
+    @property
+    def winner(self):
+        return self._winner
+
+    def _get_winner(self):
         if self._result == Result.TOP_WINS:
-            return self._top.get_winner()
+            return self._top.winner
         elif self._result == Result.BOTTOM_WINS:
-            return self._bottom.get_winner()
-        else:
-            return
+            return self._bottom.winner
 
     def get_prob(self):
         results_to_probs = self._get_results_to_probs()
@@ -70,8 +74,8 @@ class Match:
         }
 
     def _compute_rating_diff(self):
-        top_rating = self._top.get_winner().rating
-        bottom_rating = self._bottom.get_winner().rating
+        top_rating = self._top.winner.rating
+        bottom_rating = self._bottom.winner.rating
         return top_rating - bottom_rating
 
     def _compute_win_probability(self, rating_diff):
