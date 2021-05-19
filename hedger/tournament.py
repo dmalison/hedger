@@ -6,6 +6,7 @@ class Tournament:
     def __init__(self, entries):
         self._entries = entries
         self._brackets = self._get_brackets()
+        self._brackets_info = self._get_brackets_info()
 
     @property
     def entries(self):
@@ -15,6 +16,10 @@ class Tournament:
     def brackets(self):
         return self._brackets
 
+    @property
+    def brackets_info(self):
+        return self._brackets_info
+
     def _get_brackets(self):
         n_brackets = self._get_n_brackets()
         brackets = list()
@@ -23,6 +28,12 @@ class Tournament:
             bracket = self._make_bracket(results)
             brackets.append(bracket)
         return brackets
+
+    def _get_brackets_info(self):
+        return {
+            bracket.code: (bracket.prob, bracket.winner_names)
+            for bracket in self._brackets
+        }
 
     def _get_n_brackets(self):
         n_matches = self._get_n_matches()

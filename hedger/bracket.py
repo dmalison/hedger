@@ -55,21 +55,22 @@ class Bracket:
 
     def get_dist(self):
         points = list()
-        for scoring_bracket in self._tournament.brackets:
-            score = self._get_score(scoring_bracket)
+        for code, (prob, winner_names) in \
+                self._tournament.brackets_info.items():
+            score = self._get_score(winner_names)
             sample_point = utils.Point(
-                omega=scoring_bracket.code,
-                prob=scoring_bracket.prob,
+                omega=code,
+                prob=prob,
                 value=score
             )
             points.append(sample_point)
         return utils.DiscreteDist(points)
 
-    def _get_score(self, scoring_bracket):
+    def _get_score(self, scoring_bracket_winner_names):
         total_score = 0
         for winner, scoring_winner, points in zip(
                 self._winner_names,
-                scoring_bracket.winner_names,
+                scoring_bracket_winner_names,
                 self._points_per_match
         ):
             if winner == scoring_winner:
