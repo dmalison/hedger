@@ -11,6 +11,7 @@ class Bracket:
 
         self._code = self._get_code()
         self._prob = self._get_prob()
+        self._match_count = self._get_match_count()
 
     @property
     def matches(self):
@@ -50,11 +51,10 @@ class Bracket:
         return utils.DiscreteDist(points)
 
     def _get_score(self, scoring_bracket):
-        match_count = self._get_match_count()
         winners_count = self._get_winners_count(scoring_bracket)
 
         total_score = 0
-        for round_, matches in match_count.items():
+        for round_, matches in self._match_count.items():
             winners = winners_count.get(round_, 0)
             score = self._get_round_score(matches, winners)
             total_score += score
