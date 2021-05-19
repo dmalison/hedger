@@ -29,10 +29,10 @@ tournament = hedger.Tournament(entries)
 brackets = tournament.brackets
 
 with cProfile.Profile() as pr:
-    for bracket in brackets[:2]:
+    for bracket in brackets[:10]:
         bracket.summarize()
 
-with open('time_profile_stats_4.txt', 'w') as stream:
+with open('time_profile_stats.txt', 'w') as stream:
     stats = pstats.Stats(pr, stream=stream)
     stats.sort_stats(SortKey.CUMULATIVE)
     stats.print_stats()

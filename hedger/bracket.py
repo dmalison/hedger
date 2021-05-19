@@ -12,6 +12,8 @@ class Bracket:
         self._code = self._get_code()
         self._prob = self._get_prob()
         self._match_count = self._get_match_count()
+        self._winner_names = self._get_winner_names()
+        self._points_per_match = self._get_points_per_match()
 
     @property
     def matches(self):
@@ -24,6 +26,10 @@ class Bracket:
     @property
     def prob(self):
         return self._prob
+
+    @property
+    def winner_names(self):
+        return self._winner_names
 
     def summarize(self):
         return self.get_dist().summarize()
@@ -38,6 +44,15 @@ class Bracket:
             prob *= match.get_prob()
         return prob
 
+    def _get_winner_names(self):
+        return [match.winner.name for match in self._matches]
+
+    def _get_points_per_match(self):
+        return [
+            self.POINTS_PER_ROUND / self._match_count.get(match.round)
+            for match in self._matches
+        ]
+
     def get_dist(self):
         points = list()
         for scoring_bracket in self._tournament.brackets:
@@ -51,13 +66,14 @@ class Bracket:
         return utils.DiscreteDist(points)
 
     def _get_score(self, scoring_bracket):
-        winners_count = self._get_winners_count(scoring_bracket)
-
         total_score = 0
-        for round_, matches in self._match_count.items():
-            winners = winners_count.get(round_, 0)
-            score = self._get_round_score(matches, winners)
-            total_score += score
+        for winner, scoring_winner, points in zip(
+                self._winner_names,
+                scoring_bracket.winner_names,
+                self._points_per_match
+        ):
+            if winner == scoring_winner:
+                total_score += points
 
         return int(total_score)
 
@@ -70,23 +86,6 @@ class Bracket:
         for match in self.matches:
             match_count.increment(match.round)
         return match_count
-
-    def _get_winners_count(self, scoring_bracket):
-        winners_count = utils.MapToCounts()
-        for match, scoring_match in zip(self.matches, scoring_bracket.matches):
-            winner_is_correct = self._check_if_winner_is_correct(
-                match,
-                scoring_match
-            )
-            if winner_is_correct:
-                winners_count.increment(match.round)
-        return winners_count
-
-    def _check_if_winner_is_correct(self, match, scoring_match):
-        return match.winner == scoring_match.winner
-
-    def _get_round_score(self, matches, winners):
-        return winners / matches * self.POINTS_PER_ROUND
 
 
 class BracketBuilder:

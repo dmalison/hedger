@@ -22,6 +22,10 @@ class Entry:
             return False
 
     @property
+    def name(self):
+        return self._name
+
+    @property
     def winner(self):
         return self
 

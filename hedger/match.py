@@ -1,10 +1,7 @@
-import functools
-
 from hedger import Result
 
 
 class Match:
-
     def __init__(self, *, round_, index, top, bottom, result):
         self._round = round_
         self._index = index
